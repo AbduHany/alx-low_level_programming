@@ -25,7 +25,11 @@ int main(void)
 					{
 						continue;
 					}
-					if ((d < b) || (c < a))
+					if ((c + d) < (a + b))
+					{
+						continue;
+					}
+					if (c < a)
 					{
 						continue;
 					}
