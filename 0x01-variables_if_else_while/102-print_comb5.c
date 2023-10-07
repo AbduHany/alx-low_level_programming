@@ -17,22 +17,12 @@ int main(void)
 			{
 				for (d = 48; d < 58; d++)
 				{
-					if (a == b && b == c && c == d && d == a && c == a && b == d)
-					{
+					if (a == b && a == c && a == d && b == c && b == d && c == d)
 						continue;
-					}
-					if ((a == c) && (b == d))
-					{
+					else if ((a == c) && (b == d))
 						continue;
-					}
-					if ((c + d) < (a + b))
-					{
+					if ((c < a) || (d < b))
 						continue;
-					}
-					if (c < a)
-					{
-						continue;
-					}
 					putchar(a);
 					putchar(b);
 					putchar(' ');
@@ -43,6 +33,8 @@ int main(void)
 						putchar(',');
 						putchar(' ');
 					}
+					else
+						break;
 				}
 			}
 		}
