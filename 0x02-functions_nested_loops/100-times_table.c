@@ -37,8 +37,6 @@ void print_times_table(int n)
 			printf("\n");
 		}
 	}
-	else
-	{
-		return;
-	}
+	else if (n == 0)
+		printf("0\n");
 }
