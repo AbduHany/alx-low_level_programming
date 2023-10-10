@@ -12,7 +12,6 @@ int main(void)
 
 	n1 = 0;
 	n2 = 1;
-	printf("1, ");
 	for (i = 1; i < 50; i++)
 	{
 		n3 = n1 + n2;
