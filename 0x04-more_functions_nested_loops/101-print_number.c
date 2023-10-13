@@ -22,8 +22,6 @@ void print_number(int n)
 		_putchar('-');
 		n *= -1;
 	}
-	if (n == 0)
-		_putchar('0');
 	temp_div = 1;
 	for (i = 1; i < dig_count; i++)
 		temp_div *= 10;
