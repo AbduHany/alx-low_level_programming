@@ -8,31 +8,19 @@
  */
 void print_number(int n)
 {
-	int i, dig_count, temp_num, temp_dig, temp_div;
-
-	temp_num = n;
-	dig_count = 0;
-	while (temp_num != 0)
-	{
-		temp_num /= 10;
-		dig_count++;
-	}
-	if (n == 0)
-		_putchar('0');
 	if (n < 0)
 	{
 		_putchar('-');
 		n *= -1;
 	}
-	temp_div = 1;
-	for (i = 1; i < dig_count; i++)
-		temp_div *= 10;
-	temp_num = n;
-	for (i = 1; i <= dig_count; i++)
+	if (n == 0)
 	{
-		temp_dig = temp_num / temp_div;
-		_putchar(temp_dig + '0');
-		temp_num = temp_num % temp_div;
-		temp_div /= 10;
+		_putchar('0');
 	}
+	if (n / 10)
+	{
+		print_number(n / 10);
+	}
+	_putchar((n % 10) + '0');
+
 }
