@@ -8,7 +8,7 @@
  */
 void print_number(int n)
 {
-	unsigned int i, dig_count, temp_num, temp_dig, temp_div;
+	int i, dig_count, temp_num, temp_dig, temp_div;
 
 	temp_num = n;
 	dig_count = 0;
