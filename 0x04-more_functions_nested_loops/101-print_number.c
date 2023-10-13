@@ -17,6 +17,8 @@ void print_number(int n)
 		temp_num /= 10;
 		dig_count++;
 	}
+	if (n == 0)
+		_putchar('0');
 	if (n < 0)
 	{
 		_putchar('-');
