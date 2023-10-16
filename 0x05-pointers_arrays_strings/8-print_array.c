@@ -22,6 +22,6 @@ void print_array(int *a, int n)
 	}
 	else
 	{
-		return;
+		_putchar('\n');
 	}
 }
