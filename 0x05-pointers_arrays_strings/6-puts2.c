@@ -2,7 +2,8 @@
 #include <string.h>
 
 /**
- * puts2 - prints every other character of a string, starting with the first character
+ * puts2 - prints every other character of a string,
+ * starting with the first character.
  * @str: pointer to the string whose every other character will be printed
  *
  * Return: void.
