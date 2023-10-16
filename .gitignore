@@ -1,3 +1,4 @@
 # ignore the _putchar.c file
 /0x02-functions_nested_loops/_putchar.c
 /0x04-more_functions_nested_loops/_putchar.c
+/0x05-pointers_arrays_strings/_putchar.c
