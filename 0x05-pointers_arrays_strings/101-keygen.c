@@ -13,9 +13,9 @@ int main(void)
 
 	srand(time(NULL));
 	sum = 2772;
-	for (i = 0; sum > 128; i++)
+	for (i = 0; sum > 122; i++)
 	{
-		random = rand() % 128;
+		random = (rand() % 125) + 1;
 		printf("%c", random);
 		sum = sum - random;
 	}
