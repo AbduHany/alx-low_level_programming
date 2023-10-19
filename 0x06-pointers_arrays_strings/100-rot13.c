@@ -24,8 +24,6 @@ char *rot13(char *s)
 				s[i] = output[j];
 				break;
 			}
-			else
-				continue;
 		}
 		i++;
 	}
