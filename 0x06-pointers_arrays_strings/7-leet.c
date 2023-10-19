@@ -14,7 +14,7 @@ char *leet(char *s)
 	i = 0;
 	upper = "AEOTL";
 	lower = "aeotl";
-	code= "43071";
+	code = "43071";
 	while (s[i] != '\0')
 	{
 		for (j = 0; j < 5; j++)
