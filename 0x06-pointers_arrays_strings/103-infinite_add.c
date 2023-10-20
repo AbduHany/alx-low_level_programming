@@ -51,13 +51,10 @@ char *infinite_add(char *n1, char *n2, char *r, int size_r)
 		d1 = i < 0 ? 0 : n1[i] - '0';
 		d2 = j < 0 ? 0 : n2[j] - '0';
 		sum = d1 + d2 + carry;
-		if (sum >= 10)
-			carry = 1;
-		else
-			carry = 0;
 		if (l >= (size_r - 1))
 			return (0);
 		r[l] = (sum % 10) + '0';
+		carry = sum / 10;
 	}
 	if (l == size_r)
 		return (0);
