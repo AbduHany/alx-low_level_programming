@@ -46,7 +46,8 @@ char *infinite_add(char *n1, char *n2, char *r, int size_r)
 	if (len1 >= size_r || len2 >= size_r)
 		return (0);
 	carry = 0;
-	for (i = len1 - 1, j = len2 - 1, l = 0; i >= 0 || j >= 0; i--, j--, l++)
+	for (i = len1 - 1, j = len2 - 1, l = 0;
+	i >= 0 || j >= 0 || carry == 1; i--, j--, l++)
 	{
 		d1 = i < 0 ? 0 : n1[i] - '0';
 		d2 = j < 0 ? 0 : n2[j] - '0';
@@ -56,9 +57,10 @@ char *infinite_add(char *n1, char *n2, char *r, int size_r)
 		r[l] = (sum % 10) + '0';
 		carry = sum / 10;
 	}
-	if ((l - 1) == size_r)
+	l--;
+	if (l == size_r)
 		return (0);
-	r[l - 1] = '\0';
+	r[l] = '\0';
 	rev_str(r);
 	return (r);
 }
