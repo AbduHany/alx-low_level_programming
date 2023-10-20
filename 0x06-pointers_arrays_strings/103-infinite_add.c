@@ -38,6 +38,7 @@ char *infinite_add(char *n1, char *n2, char *r, int size_r)
 {
 	int i, j, l, len1, len2, carry, d1, d2, sum;
 
+	len1 = len2 = 0;
 	for (i = 0; n1[i] != '\0'; i++)
 		len1++;
 	for (i = 0; n2[i] != '\0'; i++)
