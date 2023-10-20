@@ -60,7 +60,13 @@ char *infinite_add(char *n1, char *n2, char *r, int size_r)
 	l--;
 	if (l == size_r)
 		return (0);
-	r[l] = '\0';
+	if (carry == 1)
+	{
+		r[l + 1] = '1';
+		r[l + 2] = '\0';
+	}
+	else
+		r[l + 1] = '\0';
 	rev_str(r);
 	return (r);
 }
