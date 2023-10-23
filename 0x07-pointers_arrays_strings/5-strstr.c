@@ -10,7 +10,8 @@
 char *_strstr(char *haystack, char *needle)
 {
 	int i;
-	const char *h, *n;
+	char *h, *n;
+	char *p;
 
 	p = 0;
 	for (i = 0; *(haystack + i) != '\0'; i++)
@@ -26,8 +27,7 @@ char *_strstr(char *haystack, char *needle)
 			}
 			if (*n == '\0')
 			{
-				p = h;
-				break;
+				p = &haystack[i];
 			}
 		}
 	}
