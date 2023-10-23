@@ -10,8 +10,9 @@
 char *_strstr(char *haystack, char *needle)
 {
 	int i;
-	char *h, *n;
+	char *h, *n, *p;
 
+	p = 0;
 	for (i = 0; *(haystack + i) >= '\0'; i++)
 	{
 		if (*(haystack + i) == *needle)
@@ -25,9 +26,9 @@ char *_strstr(char *haystack, char *needle)
 			}
 			if (*n == '\0')
 			{
-				return (haystack + i);
+				p = &(*(haystack + i));
 			}
 		}
 	}
-	return (0);
+	return (p);
 }
