@@ -1,6 +1,20 @@
 #include "main.h"
 
 /**
+ * get_len - calculates length of string
+ * @s: pointer to string.
+ *
+ * Return: length of the string.
+ */
+int get_len(char *s)
+{
+	if (*(s) == '\0')
+	{
+		return (0);
+	}
+	return (1 + get_len(s + 1));
+}
+/**
  * test - tests if string characters at end and start are alike.
  * @start: string pointer to be tested
  * @end: string length.
@@ -29,16 +43,10 @@ int test(char *start, char *end, int max)
  */
 int is_palindrome(char *s)
 {
-	int len, i, max;
+	int len, max;
 	char *end;
 
-	len = 0;
-	i = 0;
-	while (*(s + i) != '\0')
-	{
-		len++;
-		i++;
-	}
+	len = get_len(s);
 	if (len == 0)
 	{
 		return (1);
