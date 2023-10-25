@@ -18,7 +18,7 @@ int test(int n, int m)
 	{
 		return (0);
 	}
-	return test(n, (m + 1));
+	return (test(n, (m + 1)));
 }
 /**
  * is_prime_number - checks if number is a prime number or not.
@@ -29,10 +29,6 @@ int test(int n, int m)
  */
 int is_prime_number(int n)
 {
-	if (n < 0)
-	{
-		n = -n;
-	}
 	if (n == 1)
 	{
 		return (0);
