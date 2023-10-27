@@ -25,31 +25,16 @@ int main(int argc, char **argv)
 		printf("0\n");
 		return (1);
 	}
-	while (cents >= 25)
-	{
+	for (; cents >= 25; cents -= 25)
 		quarter++;
-		cents -= 25;
-	}
-	while (cents >= 10)
-	{
+	for (; cents >= 10; cents -= 10)
 		dime++;
-		cents -= 10;
-	}
-	while (cents >= 5)
-	{
+	for (; cents >= 5; cents -= 5)
 		nickel++;
-		cents -= 5;
-	}
-	while (cents >= 2)
-	{
+	for (; cents >= 2; cents -= 2)
 		twocent++;
-		cents -= 2;
-	}
-	while (cents > 0)
-	{
+	for (; cents > 0; cents--)
 		penny++;
-		cents -= 1;
-	}
 	printf("%d\n", quarter + dime + nickel + twocent + penny);
 	return (0);
 }
