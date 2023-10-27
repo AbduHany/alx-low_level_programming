@@ -11,9 +11,9 @@
  */
 int main(int argc, char **argv)
 {
-	int cents, quarter, dime, nickel, penny;
+	int cents, quarter, dime, nickel, penny, twocent;
 
-	quarter = dime = nickel = penny = 0;
+	quarter = dime = nickel = penny = twocent = 0;
 	if (argc != 2)
 	{
 		printf("Error\n");
@@ -40,11 +40,16 @@ int main(int argc, char **argv)
 		nickel++;
 		cents -= 5;
 	}
+	while (cents >= 2)
+	{
+		twocent++;
+		cents -= 2;
+	}
 	while (cents > 0)
 	{
 		penny++;
 		cents -= 1;
 	}
-	printf("%d\n", quarter + dime + nickel + penny);
+	printf("%d\n", quarter + dime + nickel + twocent + penny);
 	return (0);
 }
