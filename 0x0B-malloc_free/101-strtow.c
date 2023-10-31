@@ -1,40 +1,33 @@
 #include "main.h"
 #include <stdlib.h>
-/**
- * wordlens - count every word's length.
- * @str: pointer to string.
- * @word_count: number of words.
- *
- * Return: returns an int pointer to lengths array.
- */
-int *wordlens(char *str, int word_count)
-{
-	int *arr;
-	int i, j, count;
 
-	arr = malloc(word_count * sizeof(int));
-	if (arr == NULL)
-		return (NULL);
-	j = 0;
-	for (i = 0; i < word_count; i++)
+/**
+ * assign_mem - assigns memory space for word characters.
+ * @words: the double pointer to the words array.
+ * @word_count: number of words.
+ * @str: the string of original words.
+ *
+ * Return: void.
+ */
+void assign_mem(char **words, int word_count, char *str)
+{
+	int i, wlen, j;
+
+	for (i = 0, j = 0, wlen = 0; str[i] != '\0'; i++)
 	{
-		count = 0;
-		while (str[j] != '\0')
+		if (j == word_count)
+			return;
+		if (str[i] != ' ')
 		{
-			if (str[j] == ' ' && str[j + 1] == ' ')
-				j++;
-			if (str[j] != ' ')
-				count++;
-			if (str[j + 1] == ' ' && str[j] != ' ')
+			wlen++;
+			if (str[i + 1] == ' ' || str[i + 1] == '\0')
 			{
+				words[j] = (char *) malloc((wlen + 1) * sizeof(char));
 				j++;
-				break;
+				wlen = 0;
 			}
-			j++;
 		}
-		arr[i] = count;
 	}
-	return (arr);
 }
 
 /**
@@ -69,7 +62,7 @@ int countwords(char *str)
  */
 char **strtow(char *str)
 {
-	int word_count, i, j, k, *word_lens;
+	int word_count, i, j, k;
 	char **words;
 
 	if (str == NULL || *str == '\0')
@@ -80,47 +73,21 @@ char **strtow(char *str)
 	words = malloc((word_count + 1) * sizeof(char *));
 	if (words == NULL)
 		return (NULL);
-	word_lens = wordlens(str, word_count);
-	k = 0;
-	for (i = 0; i < word_count; i++)
+	assign_mem(words, word_count, str);
+	for (i = 0, j = 0, k = 0; str[i] != '\0'; i++)
 	{
-		words[i] = (char *) malloc((word_lens[i] + 1) * sizeof(char));
-		if (words[i] == NULL)
+		if (str[i] != ' ')
 		{
-			for (k = 0; k < i; k++)
-				free(words[k]);
-			return (NULL);
-		}
-	}
-	for (i = 0, j = 0; str[i] != '\0'; i++)
-	{
-		k = 0;
-		while (str[i] != '\0')
-		{
-			if (str[i] != ' ')
+			words[j][k] = str[i];
+			k++;
+			if (str[i + 1] == ' ' || str[i + 1] == '\0')
 			{
-				if (str[i + 1] == ' ')
-				{
-					words[j][k] = str[i];
-					k++;
-					break;
-				}
-				else
-				{
-					words[j][k] = str[i];
-					k++;
-					i++;
-				}
+				words[j][k] = '\0';
+				k = 0;
+				j++;
 			}
-			else if (str[i] == ' ')
-				i++;
 		}
-		if (str[i] == '\0')
-			break;
-		words[j][k] = '\0';
-		j++;
 	}
-	free(word_lens);
 	words[word_count] = NULL;
 	return (words);
 }
