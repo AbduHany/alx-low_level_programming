@@ -121,6 +121,5 @@ char **strtow(char *str)
 		j++;
 	}
 	free(word_lens);
-	words[word_count] = NULL;
 	return (words);
 }
