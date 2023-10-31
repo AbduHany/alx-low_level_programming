@@ -77,7 +77,7 @@ char **strtow(char *str)
 	word_count = countwords(str);
 	if (word_count == 0)
 		return (NULL);
-	words = malloc((word_count) * sizeof(char *));
+	words = malloc((word_count + 1) * sizeof(char *));
 	if (words == NULL)
 		return (NULL);
 	word_lens = wordlens(str, word_count);
