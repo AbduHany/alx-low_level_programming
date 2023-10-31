@@ -87,6 +87,7 @@ char **strtow(char *str)
 		{
 			for (k = 0; k < i; k++)
 				free(words[k]);
+			return (NULL);
 		}
 	}
 	for (i = 0, j = 0; str[i] != '\0'; i++)
