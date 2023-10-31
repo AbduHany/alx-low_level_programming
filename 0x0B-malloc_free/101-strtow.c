@@ -72,7 +72,7 @@ char **strtow(char *str)
 	int word_count, i, j, k, *word_lens;
 	char **words;
 
-	if (str == NULL || *str == '\0')
+	if (str == NULL || *str == '\0' || (str[0] == ' ' && str[1] == '\0'))
 		return (NULL);
 	word_count = countwords(str);
 	words = malloc((word_count + 1) * sizeof(char *));
