@@ -84,7 +84,7 @@ char **strtow(char *str)
 	k = 0;
 	for (i = 0; i < word_count; i++)
 	{
-		words[i] = (char *) malloc((word_lens[i] + 1) * sizeof(char));
+		words[i] = malloc((word_lens[i] + 1) * sizeof(char));
 		if (words[i] == NULL)
 		{
 			for (k = 0; k < i; k++)
@@ -121,5 +121,6 @@ char **strtow(char *str)
 		j++;
 	}
 	free(word_lens);
+	words[word_count] = NULL;
 	return (words);
 }
