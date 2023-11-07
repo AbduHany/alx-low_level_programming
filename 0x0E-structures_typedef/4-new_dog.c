@@ -11,12 +11,12 @@
  */
 dog_t *new_dog(char *name, float age, char *owner)
 {
-	if (name == NULL || owner == NULL)
-		return (NULL);
 	dog_t *tmp;
 	char *cpname, *cpowner;
 	int name_len, owner_len, i;
 
+	if (name == NULL || owner == NULL)
+		return (NULL);
 	for (i = 0, name_len = 0; name[i] != '\0'; i++)
 		name_len++;
 	for (i = 0, owner_len = 0; owner[i] != '\0'; i++)
