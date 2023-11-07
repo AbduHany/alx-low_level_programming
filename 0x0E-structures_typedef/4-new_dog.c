@@ -30,6 +30,7 @@ dog_t *new_dog(char *name, float age, char *owner)
 	cpname[i] = '\0';
 	for (i = 0; i < owner_len; i++)
 		cpowner[i] = owner[i];
+	cpowner[i] = '\0';
 	tmp = malloc(sizeof(struct dog));
 	if (tmp == NULL)
 		return (NULL);
