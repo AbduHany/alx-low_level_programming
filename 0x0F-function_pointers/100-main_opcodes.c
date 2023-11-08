@@ -25,7 +25,7 @@ int main(int argc, char **argv)
 		printf("Error\n");
 		exit(2);
 	}
-	ptr = (unsigned char *) main;
+	ptr = (unsigned char *) &main;
 	for (i = 0; i < byte_num; i++)
 	{
 		printf("%02x", ptr[i]);
