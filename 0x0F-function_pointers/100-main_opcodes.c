@@ -28,7 +28,9 @@ int main(int argc, char **argv)
 	ptr = (unsigned char *) main;
 	for (i = 0; i < byte_num; i++)
 	{
-		printf("%02x ", ptr[i]);
+		printf("%02x", ptr[i]);
+		if (i < byte_num - 1)
+			printf(" ");
 	}
 	printf("\n");
 	return (0);
