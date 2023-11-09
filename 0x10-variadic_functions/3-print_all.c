@@ -51,7 +51,7 @@ void print_s(va_list a)
 	char *tmp;
 
 	tmp = va_arg(a, char *);
-	if (tmp == NULL)
+	if (!tmp)
 	{
 		tmp = "(nil)";
 	}
