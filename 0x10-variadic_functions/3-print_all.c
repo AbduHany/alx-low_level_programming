@@ -51,7 +51,7 @@ void print_s(va_list a)
 	char *tmp;
 
 	tmp = va_arg(a, char *);
-	if (!tmp)
+	if (tmp == NULL)
 	{
 		tmp = "(nil)";
 	}
@@ -68,7 +68,6 @@ void print_all(const char * const format, ...)
 {
 	int i, j;
 	va_list a;
-	void (*tmp)(va_list a);
 	helper b[] = {
 		{'c', print_c},
 		{'i', print_i},
@@ -76,7 +75,7 @@ void print_all(const char * const format, ...)
 		{'s', print_s},
 		{'\0', NULL}
 	};
-	char *d = "";
+	char *e = "";
 
 	va_start(a, format);
 	i = 0;
@@ -87,10 +86,9 @@ void print_all(const char * const format, ...)
 		{
 			if (format[i] == b[j].c)
 			{
-				printf("%s", d);
-				tmp = b[j].fun;
-				tmp(a);
-				d = ", ";
+				printf("%s", e);
+				b[j].fun(a);
+				e = ", ";
 			}
 			j++;
 		}
