@@ -18,6 +18,7 @@ void my_print(char c, va_list a)
 	else if (c == 's')
 	{
 		char *tmp;
+
 		tmp = va_arg(a, char *);
 		if (tmp == NULL)
 			printf("(nil)");
