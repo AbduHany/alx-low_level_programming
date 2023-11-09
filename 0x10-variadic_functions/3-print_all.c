@@ -42,7 +42,7 @@ void print_all(const char * const format, ...)
 	i = 0;
 	while (format[i] != '\0' && i < 9)
 	{
-		while (format[i] == 'c' || format[i] == 'i'
+		if (format[i] == 'c' || format[i] == 'i'
 		|| format[i] == 'f' || format[i] == 's')
 		{
 			my_print(format[i], a);
