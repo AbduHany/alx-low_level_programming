@@ -9,7 +9,7 @@
  */
 typedef struct helper
 {
-	char c;
+	char *c;
 	void (*fun)(va_list a);
 } helper;
 

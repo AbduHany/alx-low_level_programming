@@ -60,11 +60,11 @@ void print_all(const char * const format, ...)
 	int i, j;
 	va_list a;
 	helper b[] = {
-		{'c', print_c},
-		{'i', print_i},
-		{'f', print_f},
-		{'s', print_s},
-		{'\0', NULL}
+		{"c", print_c},
+		{"i", print_i},
+		{"f", print_f},
+		{"s", print_s},
+		{NULL, NULL}
 	};
 	char *e = "";
 
@@ -75,7 +75,7 @@ void print_all(const char * const format, ...)
 		j = 0;
 		while (b[j].c)
 		{
-			if (format[i] == b[j].c)
+			if (format[i] == b[j].c[0])
 			{
 				printf("%s", e);
 				b[j].fun(a);
