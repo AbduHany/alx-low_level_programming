@@ -44,7 +44,7 @@ void print_s(va_list a)
 	tmp = va_arg(a, char *);
 	if (tmp == NULL)
 	{
-		tmp = "(niil)";
+		tmp = "(nil)";
 	}
 	printf("%s", tmp);
 }
