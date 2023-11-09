@@ -53,8 +53,7 @@ void print_s(va_list a)
 	tmp = va_arg(a, char *);
 	if (tmp == NULL)
 	{
-		printf("(nil)");
-		return;
+		tmp = "(nil)";
 	}
 	printf("%s", tmp);
 }
