@@ -55,7 +55,7 @@ void print_s(va_list a)
 	{
 		tmp = "(nil)";
 	}
-	printf("%s", tmp);
+	printf("%shi", tmp);
 }
 
 /**
