@@ -1,30 +1,62 @@
-#include <stdarg.h>
 #include <stdio.h>
+#include "variadic_functions.h"
+
 /**
- * my_print - prints optional argument
- * @c: specifier character.
+ * print_c - prints characters
  * @a: va_list variable.
  *
  * Return: void
  */
-void my_print(char c, va_list a)
+void print_c(va_list a)
 {
-	if (c == 'c')
-		printf("%c", va_arg(a, int));
-	else if (c == 'i')
-		printf("%d", va_arg(a, int));
-	else if (c == 'f')
-		printf("%f", va_arg(a, double));
-	else if (c == 's')
-	{
-		char *tmp;
+	char d;
 
-		tmp = va_arg(a, char *);
-		if (tmp == NULL)
-			printf("(nil)");
-		else
-			printf("%s", tmp);
+	d = va_arg(a, int);
+	printf("%c", d);
+}
+/**
+ * print_i - prints integers
+ * @a: va_list variable.
+ *
+ * Return: void
+ */
+void print_i(va_list a)
+{
+	int d;
+
+	d = va_arg(a, int);
+	printf("%d", d);
+}
+/**
+ * print_f - prints floats
+ * @a: va_list variable.
+ *
+ * Return: void
+ */
+void print_f(va_list a)
+{
+	float d;
+
+	d = va_arg(a, double);
+	printf("%f", d);
+}
+/**
+ * print_s - prints strings
+ * @a: va_list variable.
+ *
+ * Return: void
+ */
+void print_s(va_list a)
+{
+	char *tmp;
+
+	tmp = va_arg(a, char *);
+	if (tmp == NULL)
+	{
+		printf("(nil)");
+		return;
 	}
+	printf("%s", tmp);
 }
 
 /**
@@ -35,20 +67,33 @@ void my_print(char c, va_list a)
  */
 void print_all(const char * const format, ...)
 {
-	int i;
+	int i, j;
 	va_list a;
+	void (*tmp)(va_list a);
+	helper b[] = {
+		{'c', print_c},
+		{'i', print_i},
+		{'f', print_f},
+		{'s', print_s},
+		{'\0', NULL}
+	};
+	char *d = "";
 
 	va_start(a, format);
 	i = 0;
 	while (format[i] != '\0' && i < 9)
 	{
-		if (format[i] == 'c' || format[i] == 'i'
-		|| format[i] == 'f' || format[i] == 's')
+		j = 0;
+		while (b[j].c != '\0')
 		{
-			my_print(format[i], a);
-			if (format[i + 1] != '\0')
-				printf(", ");
-			i++;
+			if (format[i] == b[j].c)
+			{
+				printf("%s", d);
+				tmp = b[j].fun;
+				tmp(a);
+				d = ", ";
+			}
+			j++;
 		}
 		i++;
 	}
