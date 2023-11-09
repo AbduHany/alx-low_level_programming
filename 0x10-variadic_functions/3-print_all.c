@@ -9,7 +9,10 @@
  */
 void print_c(va_list a)
 {
-	printf("%c", va_arg(a, int));
+	char d;
+
+	d = va_arg(a, int);
+	printf("%c", d);
 }
 /**
  * print_i - prints integers
@@ -19,7 +22,10 @@ void print_c(va_list a)
  */
 void print_i(va_list a)
 {
-	printf("%d", va_arg(a, int));
+	int d;
+
+	d = va_arg(a, int);
+	printf("%d", d);
 }
 /**
  * print_f - prints floats
@@ -29,7 +35,10 @@ void print_i(va_list a)
  */
 void print_f(va_list a)
 {
-	printf("%f", va_arg(a, double));
+	float d;
+
+	d = va_arg(a, double);
+	printf("%f", d);
 }
 /**
  * print_s - prints strings
@@ -44,7 +53,8 @@ void print_s(va_list a)
 	tmp = va_arg(a, char *);
 	if (tmp == NULL)
 	{
-		tmp = "(nil)";
+		printf("(nil)");
+		return;
 	}
 	printf("%s", tmp);
 }
@@ -59,6 +69,7 @@ void print_all(const char * const format, ...)
 {
 	int i, j;
 	va_list a;
+	void (*tmp)(va_list a);
 	helper b[] = {
 		{"c", print_c},
 		{"i", print_i},
@@ -66,20 +77,21 @@ void print_all(const char * const format, ...)
 		{"s", print_s},
 		{NULL, NULL}
 	};
-	char *e = "";
+	char *c = "";
 
 	va_start(a, format);
 	i = 0;
-	while (format[i] && format)
+	while (format != NULL && format[i] != '\0')
 	{
 		j = 0;
-		while (b[j].c)
+		while (b[j].c != NULL)
 		{
 			if (format[i] == b[j].c[0])
 			{
-				printf("%s", e);
-				b[j].fun(a);
-				e = ", ";
+				printf("%s", c);
+				tmp = b[j].fun;
+				tmp(a);
+				c = ", ";
 			}
 			j++;
 		}
