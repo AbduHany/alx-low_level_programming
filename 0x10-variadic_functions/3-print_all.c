@@ -9,10 +9,7 @@
  */
 void print_c(va_list a)
 {
-	char d;
-
-	d = va_arg(a, int);
-	printf("%c", d);
+	printf("%c", va_arg(a, int));
 }
 /**
  * print_i - prints integers
@@ -22,10 +19,7 @@ void print_c(va_list a)
  */
 void print_i(va_list a)
 {
-	int d;
-
-	d = va_arg(a, int);
-	printf("%d", d);
+	printf("%d", va_arg(a, int));
 }
 /**
  * print_f - prints floats
@@ -35,10 +29,7 @@ void print_i(va_list a)
  */
 void print_f(va_list a)
 {
-	float d;
-
-	d = va_arg(a, double);
-	printf("%f", d);
+	printf("%f", va_arg(a, double));
 }
 /**
  * print_s - prints strings
@@ -55,7 +46,7 @@ void print_s(va_list a)
 	{
 		tmp = "(nil)";
 	}
-	printf("%shi", tmp);
+	printf("%s", tmp);
 }
 
 /**
