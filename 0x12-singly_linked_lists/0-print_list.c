@@ -9,7 +9,7 @@
  */
 void printstr(char *str, unsigned int len)
 {
-	if (str == NULL)
+	if (str == NULL || len == 0)
 	{
 		printf("[0] (nil)\n");
 		return;
