@@ -8,14 +8,31 @@
  *
  * Return: void.
  */
-void printstr(char *str, unsigned int len)
+void printstr(char *str, int len)
 {
 	if (str == NULL)
 	{
 		printf("[0] (nil)\n");
 	}
 	else
-		printf("[%u] %s\n", len, str);
+		printf("[%d] %s\n", len, str);
+}
+
+/**
+ * _strlen - calculates length of a string.
+ * @str: char pointer to string.
+ *
+ * Return: length of string.
+ */
+int _strlen(char *str)
+{
+	int len = 0, i;
+
+	if (str == NULL)
+		return (0);
+	for (i = 0; str[i] != '\0'; i++)
+		len++;
+	return (len);
 }
 
 /**
@@ -26,8 +43,8 @@ void printstr(char *str, unsigned int len)
  */
 size_t print_list(const list_t *h)
 {
-	int node_count = 0;
-	unsigned int len;
+	size_t node_count = 0;
+	int len;
 	char *str;
 	list_t *temp;
 
@@ -40,7 +57,7 @@ size_t print_list(const list_t *h)
 	while (temp != NULL)
 	{
 		str = temp->str;
-		len = temp->len;
+		len = _strlen(str);
 		printstr(str, len);
 		node_count++;
 		temp = temp->next;
