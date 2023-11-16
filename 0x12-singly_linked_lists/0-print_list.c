@@ -33,7 +33,7 @@ size_t print_list(const list_t *h)
 	if (h == NULL)
 	{
 		printf("List is empty\n");
-		return (0);
+		return (-1);
 	}
 	temp = (list_t *) h;
 	while (temp != NULL)
