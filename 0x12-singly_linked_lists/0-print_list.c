@@ -9,12 +9,12 @@
  */
 void printstr(char *str, unsigned int len)
 {
-	if (str == NULL || len == 0)
+	if (str == NULL)
 	{
-		printf("[0] (nil)\n");
-		return;
+		printf("[0] (nil)\n");;
 	}
-	printf("[%u] %s\n", len, str);
+	else
+		printf("[%u] %s\n", len, str);
 }
 
 /**
@@ -33,7 +33,7 @@ size_t print_list(const list_t *h)
 	if (h == NULL)
 	{
 		printf("List is empty\n");
-		return (-1);
+		return (0);
 	}
 	temp = (list_t *) h;
 	while (temp != NULL)
