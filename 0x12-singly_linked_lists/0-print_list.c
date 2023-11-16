@@ -12,7 +12,7 @@ void printstr(char *str, unsigned int len)
 {
 	if (str == NULL)
 	{
-		printf("[0] (nil)\n");;
+		printf("[0] (nil)\n");
 	}
 	else
 		printf("[%u] %s\n", len, str);
