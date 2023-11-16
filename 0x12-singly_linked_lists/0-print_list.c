@@ -3,6 +3,7 @@
 /**
  * printstr - prints a string.
  * @str: char pointer to string.
+ * @len: length of the string.
  *
  * Return: void.
  */
@@ -28,7 +29,7 @@ size_t print_list(const list_t *h)
 	unsigned int len;
 	char *str;
 	list_t *temp;
-	
+
 	if (h == NULL)
 	{
 		printf("List is empty\n");
