@@ -10,11 +10,6 @@ void free_listint(listint_t *head)
 {
 	listint_t *temp;
 
-	if (head == NULL)
-	{
-		printf("List is already empty.\n");
-		return;
-	}
 	temp = head;
 	while (temp != NULL)
 	{
