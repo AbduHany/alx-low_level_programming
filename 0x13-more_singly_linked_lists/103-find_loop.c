@@ -7,12 +7,12 @@
  * Return: 0 if list contains no loop, number of unique nodes
  * if list contains loop.
  */
-size_t check_loop(const listint_t *head)
+listint_t *get_loop_start(listint_t *head)
 {
 	const listint_t *fast, *slow;
-	size_t node_count = 0;
+	size_t node_count = 1;
 
-	if (head == NULL || head->next == NULL)
+	if (head->next == NULL)
 		return (0);
 	slow = head->next;
 	fast = head->next->next;
@@ -27,18 +27,12 @@ size_t check_loop(const listint_t *head)
 				slow = slow->next;
 				node_count++;
 			}
-			fast = fast->next;
-			while (fast != slow)
-			{
-				fast = fast->next;
-				node_count++;
-			}
-			return (node_count + 1);
+			return (fast);
 		}
 		slow = slow->next;
 		fast = (fast->next)->next;
 	}
-	return (0);
+	return (NULL);
 }
 /**
  * print_listint_safe - prints a listint_t linked list.
@@ -46,31 +40,16 @@ size_t check_loop(const listint_t *head)
  *
  * Return: number of nodes in list.
  */
-size_t print_listint_safe(const listint_t *head)
+listint_t *find_listint_loop(listint_t *head)
 {
-	size_t node_count = 0, i;
-	const listint_t *temp;
+	listint_t *temp;
 
-	node_count = check_loop(head);
-	if (node_count == 0)
+	if (head == NULL)
+		exit(98);
+	temp = get_loop_start(head);
+	if (temp == NULL)
 	{
-		temp = head;
-		while (temp != NULL)
-		{
-			printf("[%p] %d\n", (void *)temp, temp->n);
-			temp = temp->next;
-			node_count++;
-		}
+		return (NULL);
 	}
-	else
-	{
-		temp = head;
-		for (i = 0; i < node_count; i++)
-		{
-			printf("[%p] %d\n", (void *)temp, temp->n);
-			temp = temp->next;
-		}
-		printf("-> [%p] %d\n", (void *)temp, temp->n);
-	}
-	return (node_count);
+	return (temp);
 }
