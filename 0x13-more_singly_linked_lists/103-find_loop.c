@@ -10,10 +10,7 @@
 listint_t *get_loop_start(listint_t *head)
 {
 	listint_t *fast, *slow;
-	size_t node_count = 1;
 
-	if (head->next == NULL)
-		return (0);
 	slow = head->next;
 	fast = head->next->next;
 	while (fast != NULL) /* Floyd's method using hare and tortoise pointers */
@@ -25,7 +22,6 @@ listint_t *get_loop_start(listint_t *head)
 			{
 				fast = fast->next;
 				slow = slow->next;
-				node_count++;
 			}
 			return (fast);
 		}
@@ -43,14 +39,7 @@ listint_t *get_loop_start(listint_t *head)
  */
 listint_t *find_listint_loop(listint_t *head)
 {
-	listint_t *temp;
-
 	if (head == NULL)
 		return (NULL);
-	temp = get_loop_start(head);
-	if (temp == NULL)
-	{
-		return (NULL);
-	}
-	return (temp);
+	return (get_loop_start(head));
 }
