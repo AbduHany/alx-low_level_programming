@@ -49,7 +49,7 @@ size_t print_listint_safe(const listint_t *head)
 	size_t node_count = 0, i;
 	const listint_t *temp;
 
-	if (head == NULL)
+	if (head == NULL || head->next == NULL)
 		exit(98);
 	node_count = check_loop(head);
 	if (node_count == 0)
