@@ -1,13 +1,13 @@
 #include "lists.h"
 
 /**
- * check_loop - checks if linked list has a loop or not.
+ * nodes_to_free - gets number of nodes to be freed if list has loop.
  * @head: pointer to head of linked list.
  *
- * Return: 0 if list contains no loop, number of unique nodes
+ * Return: 0 if list contains no loop, number of nodes
  * if list contains loop.
  */
-size_t check_loop(listint_t *head)
+size_t nodes_to_free(listint_t *head)
 {
 	listint_t *fast, *slow;
 	size_t node_count = 0;
@@ -51,7 +51,7 @@ size_t free_listint_safe(listint_t **h)
 
 	if (*h == NULL)
 		return (0);
-	node_count = check_loop(*h);
+	node_count = nodes_to_free(*h);
 	if (node_count == 0)
 	{
 		temp = *h;
@@ -62,6 +62,7 @@ size_t free_listint_safe(listint_t **h)
 			*h = temp;
 			node_count++;
 		}
+		*h = NULL;
 		h = NULL;
 		return (node_count++);
 	}
@@ -74,6 +75,7 @@ size_t free_listint_safe(listint_t **h)
 			free(*h);
 			*h = temp;
 		}
+		*h = NULL;
 		h = NULL;
 	}
 	return (node_count);

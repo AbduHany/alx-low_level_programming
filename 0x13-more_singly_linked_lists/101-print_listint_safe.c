@@ -1,13 +1,13 @@
 #include "lists.h"
 
 /**
- * check_loop - checks if linked list has a loop or not.
+ * nodes_to_print - gets number of nodes to be printed if list has loop.
  * @head: pointer to head of linked list.
  *
- * Return: 0 if list contains no loop, number of unique nodes
- * if list contains loop.
+ * Return: 0 if list contains no loop, number of nodes to be freed
+ * if list has loop.
  */
-size_t check_loop(const listint_t *head)
+size_t nodes_to_print(const listint_t *head)
 {
 	const listint_t *fast, *slow;
 	size_t node_count = 0;
@@ -51,7 +51,7 @@ size_t print_listint_safe(const listint_t *head)
 
 	if (head == NULL || head->next == NULL)
 		return (0);
-	node_count = check_loop(head);
+	node_count = nodes_to_print(head);
 	if (node_count == 0)
 	{
 		temp = head;
