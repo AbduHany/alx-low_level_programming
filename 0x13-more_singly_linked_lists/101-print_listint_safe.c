@@ -12,8 +12,6 @@ size_t check_loop(const listint_t *head)
 	const listint_t *fast, *slow;
 	size_t node_count = 1;
 
-	if (head == NULL || head->next == NULL)
-		exit(98);
 	slow = head->next;
 	fast = head->next->next;
 	while (fast != NULL) /* Floyd's method using hare and tortoise pointers */
@@ -50,6 +48,8 @@ size_t print_listint_safe(const listint_t *head)
 {
 	size_t node_count = 0, i;
 
+	if (head == NULL)
+		exit(98);
 	node_count = check_loop(head);
 	if (node_count == 0)
 	{
