@@ -10,8 +10,6 @@ void print_binary(unsigned long int n)
 {
 	unsigned long int divisor = 1, temp_num;
 
-	if (n == 0)
-		_putchar('0');
 	temp_num = n;
 	while (temp_num != 0)
 	{
