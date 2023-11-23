@@ -9,8 +9,8 @@
  */
 int get_bit(unsigned long int n, unsigned int index)
 {
-	unsigned int divisor = 1, temp_num;
 	int bitval;
 
-	temp_num = n;
+	bitval = (n >> index) & 1;
+	return (bitval);
 }
