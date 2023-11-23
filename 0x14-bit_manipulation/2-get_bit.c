@@ -9,5 +9,16 @@
  */
 int get_bit(unsigned long int n, unsigned int index)
 {
+	unsigned int bitlength = 0;
+	unsigned long int temp_num;
+	
+	temp_num = n;
+	while (temp_num != 0)
+	{
+		bitlength++;
+		temp_num = temp_num >> 1;
+	}
+	if (index >= bitlength || index <= 0)
+		return (-1);
 	return (((n >> index) & 1));
 }
