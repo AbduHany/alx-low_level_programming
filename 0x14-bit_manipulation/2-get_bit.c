@@ -13,14 +13,13 @@ int get_bit(unsigned long int n, unsigned int index)
 	int bitval;
 
 	temp_num = n;
-	while (temp_num >> 1)
+	while ((temp_num >> 1) != 0)
 	{
 		bitlength++;
 		temp_num = temp_num >> 1;
 	}
-	if (index > (bitlength - 1))
-		bitval = -1;
-	else
-		bitval = (n >> index) & 1;
+	if (index > bitlength)
+		return (-1);
+	bitval = (n >> index) & 1;
 	return (bitval);
 }
