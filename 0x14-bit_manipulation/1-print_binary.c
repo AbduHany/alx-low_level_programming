@@ -13,7 +13,6 @@ void print_binary(unsigned long int n)
 	if (n == 0)
 	{
 		_putchar('0');
-		return;
 	}
 	temp_num = n;
 	while (temp_num != 0)
