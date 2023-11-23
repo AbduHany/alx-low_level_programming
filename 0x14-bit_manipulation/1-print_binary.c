@@ -16,7 +16,7 @@ void print_binary(unsigned long int n)
 		return;
 	}
 	temp_num = n;
-	while (temp_num != 0)
+	while ((temp_num >> 1) != 0)
 	{
 		divisor = divisor << 1;
 		temp_num = temp_num >> 1;
