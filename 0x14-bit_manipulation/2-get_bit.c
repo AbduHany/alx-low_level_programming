@@ -7,4 +7,10 @@
  *
  * Return: returns the value of the bit, 0 or 1.
  */
+int get_bit(unsigned long int n, unsigned int index)
+{
+	unsigned int divisor = 1, temp_num;
+	int bitval;
 
+	temp_num = n;
+}
