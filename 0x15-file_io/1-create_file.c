@@ -3,7 +3,9 @@
 /**
  * create_file - creates a file.
  * @filename: string of filename to be created.
- * @text_context: string to text to be added to newly created file.
+ * @text_content: string to text to be added to newly created file.
+ *
+ * Return: 1 if successful, -1 if error encountered.
  */
 int create_file(const char *filename, char *text_content)
 {
@@ -21,7 +23,7 @@ int create_file(const char *filename, char *text_content)
 		close(fd);
 		return (1);
 	}
-	
+
 	for (strlen = 0, i = 0; text_content[i] != '\0'; i++)
 		strlen++;
 	written_bytes = write(fd, text_content, strlen);
