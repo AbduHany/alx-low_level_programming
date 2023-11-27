@@ -23,14 +23,27 @@ ssize_t read_textfile(const char *filename, size_t letters)
 
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
+	{
+		free(buffer);
 		return (0);
+	}
 
 	read_letters = read(fd, buffer, letters);
 	if (read_letters == -1)
+	{
+		free(buffer);
+		close(fd);
 		return (0);
-	written_letters = write(STDOUT_FILENO, buffer, letters);
-	if (written_letters == -1 || written_letters > (ssize_t)letters)
+	}
+	buffer[letters] = '\0';
+
+	written_letters = write(STDOUT_FILENO, buffer, letters + 1);
+	if (written_letters == -1)
+	{
+		free(buffer);
+		close(fd);
 		return (0);
+	}
 
 	free(buffer);
 	close(fd);
