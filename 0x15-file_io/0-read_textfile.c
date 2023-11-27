@@ -28,8 +28,9 @@ ssize_t read_textfile(const char *filename, size_t letters)
 		return (0);
 	}
 
+
 	read_letters = read(fd, buffer, letters);
-	if (read_letters == -1)
+	if (read_letters == -1 || read_letters > (ssize_t)letters)
 	{
 		free(buffer);
 		close(fd);
@@ -37,7 +38,7 @@ ssize_t read_textfile(const char *filename, size_t letters)
 	}
 
 	written_letters = write(STDOUT_FILENO, buffer, letters);
-	if (written_letters == -1 || read_letters != written_letters)
+	if (written_letters == -1)
 	{
 		free(buffer);
 		close(fd);
