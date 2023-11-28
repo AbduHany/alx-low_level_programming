@@ -157,7 +157,7 @@ void printABIVER(unsigned char *e_ident)
  * identifiers.
  * Return: void.
  */
-void printtype(unsigned int e_type, unsigned char *e_ident)
+void printtype(Elf64_Half e_type, unsigned char *e_ident)
 {
 	printf("  Type:                              ");
 	if (e_ident[EI_DATA] == ELFDATA2MSB)
@@ -187,7 +187,7 @@ void printtype(unsigned int e_type, unsigned char *e_ident)
  * identifiers.
  * Return: void.
  */
-void printentry(unsigned long int e_entry, unsigned char *e_ident)
+void printentry(Elf64_Addr e_entry, unsigned char *e_ident)
 {
 	printf("  Entry point address:               ");
 
