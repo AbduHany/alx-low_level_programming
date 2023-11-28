@@ -39,7 +39,7 @@ void printmagic(unsigned char *e_ident)
 {
 	int i;
 
-	printf("Magic:   \n");
+	printf("Magic:   ");
 	for (i = 0; i < EI_NIDENT; i++)
 	{
 		if (i == EI_NIDENT - 1)
