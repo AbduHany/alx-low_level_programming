@@ -84,7 +84,7 @@ void printdata(unsigned char *e_ident)
 	else if (e_ident[EI_DATA] == ELFDATA2MSB)
 		printf("2's complement, big endian\n");
 	else
-		printf("<unknown: %x>\n", e_ident[EI_CLASS]);
+		printf("<unknown: %x>\n", e_ident[EI_DATA]);
 }
 
 /**
@@ -193,7 +193,9 @@ void printentry(unsigned long int e_entry, unsigned char *e_ident)
 
 	if (e_ident[EI_DATA] == ELFDATA2MSB)
 	{
-		e_entry = __builtin_bswap64(e_entry);
+		e_entry = ((e_entry << 8) & 0xFF00FF00) |
+			((e_entry >> 8) & 0xFF00FF);
+		e_entry = (e_entry << 16) | (e_entry >> 16);
 	}
 	if (e_ident[EI_CLASS] == ELFCLASS32)
 		printf("0x%x\n", (unsigned int)e_entry);
