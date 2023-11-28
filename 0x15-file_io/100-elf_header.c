@@ -24,7 +24,7 @@ void checkifelf(unsigned char *e_ident)
 
 	if (flag == 0)
 	{
-		dprintf(STDERR_FILENO, "Error: not elf file\n");
+		dprintf(STDERR_FILENO, "Error: Not an ELF file\n");
 		exit(98);
 	}
 }
