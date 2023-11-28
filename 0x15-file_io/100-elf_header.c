@@ -209,7 +209,7 @@ void closeelf(int elffile)
  *
  * Return: 0 if success.
  */
-int main(int argc, char **argv)
+int main(int __attribute__((unused)) argc, char **argv)
 {
 	int fd_open, fd_read;
 	Elf64_Ehdr *ptr;
