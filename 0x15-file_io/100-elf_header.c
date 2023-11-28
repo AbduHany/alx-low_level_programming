@@ -158,7 +158,7 @@ void printtype(Elf64_Half e_type, unsigned char *e_ident)
 {
 	printf("  Type:                              ");
 	if (e_ident[EI_DATA] == ELFDATA2MSB)
-		e_type >>= 8;
+		e_type = e_type >> 8;
 
 	if (e_type == ET_NONE)
 		printf("UNKNOWN TYPE\n");
@@ -188,10 +188,14 @@ void printentry(Elf64_Addr e_entry, unsigned char *e_ident)
 {
 	printf("  Entry point address:               ");
 
+	if (e_ident[EI_DATA] == ELFDATA2MSB)
+	{
+		e_entry = __builtin_bswap64(e_entry);
+	}
 	if (e_ident[EI_CLASS] == ELFCLASS32)
-		printf("%#x\n", (unsigned int)e_entry);
+		printf("0x%x\n", (unsigned int)e_entry);
 	else
-		printf("%#lx\n", e_entry);
+		printf("0x%lx\n", e_entry);
 }
 
 /**
