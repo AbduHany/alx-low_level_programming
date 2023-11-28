@@ -150,6 +150,8 @@ void printABIVER(unsigned char *e_ident)
  * printtype - prints the type of elf file.
  * @e_type: member that identifies the elf
  * file type.
+ * @e_ident: pointer to array containing elf
+ * identifiers.
  * Return: void.
  */
 void printtype(Elf64_Half e_type, unsigned char *e_ident)
@@ -178,6 +180,8 @@ void printtype(Elf64_Half e_type, unsigned char *e_ident)
  * starting the process.
  * @e_entry: member that identifies entry
  * address.
+ * @e_ident: pointer to array containing elf
+ * identifiers.
  * Return: void.
  */
 void printentry(Elf64_Addr e_entry, unsigned char *e_ident)
