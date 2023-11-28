@@ -113,7 +113,7 @@ void printversion(unsigned char *e_ident)
 void printOSABI(unsigned char *e_ident)
 {
 	printf("  OS/ABI:                            ");
-	if (e_ident[EI_OSABI] == ELFOSABI_NONE)
+	if (e_ident[EI_OSABI] == ELFOSABI_SYSV)
 		printf("UNIX - System V\n");
 	else if (e_ident[EI_OSABI] == ELFOSABI_HPUX)
 		printf("UNIX - HP-UX\n");
