@@ -119,8 +119,6 @@ void printOSABI(unsigned char *e_ident)
 		printf("UNIX - HP-UX\n");
 	else if (e_ident[EI_OSABI] == ELFOSABI_NETBSD)
 		printf("UNIX - NetBSD\n");
-	else if (e_ident[EI_OSABI] == ELFOSABI_GNU)
-		printf("UNIX - GNU\n");
 	else if (e_ident[EI_OSABI] == ELFOSABI_LINUX)
 		printf("UNIX - Linux\n");
 	else if (e_ident[EI_OSABI] == ELFOSABI_SOLARIS)
