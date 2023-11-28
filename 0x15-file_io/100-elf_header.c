@@ -60,11 +60,13 @@ void printclass(unsigned char *e_ident)
 {
 	printf("  Class:                             ");
 	if (e_ident[EI_CLASS] == 0)
-		printf("INVALID CLASS\n");
+		printf("none\n");
 	else if (e_ident[EI_CLASS] == 1)
 		printf("ELF32\n");
 	else if (e_ident[EI_CLASS] == 2)
 		printf("ELF64\n");
+	else
+		printf("<unknown: %x>\n", e_ident[EI_CLASS]);
 }
 
 /**
@@ -82,6 +84,8 @@ void printdata(unsigned char *e_ident)
 		printf("2's complement, little endian\n");
 	else if (e_ident[EI_DATA] == 2)
 		printf("2's complement, big endian\n");
+	else
+		printf("<unknown: %x>\n", e_ident[EI_DATA]);
 }
 
 /**
@@ -130,8 +134,10 @@ void printOSABI(unsigned char *e_ident)
 		printf("UNIX - TRU64\n");
 	else if (e_ident[EI_OSABI] == ELFOSABI_ARM)
 		printf("ARM\n");
+	else if (e_ident[EI_OSABI] == ELFOSABI_STANDALONE)
+		printf("Standalone App\n");
 	else
-		printf("unknown: %x", e_ident[EI_OSABI]);
+		printf("<unknown: %x>\n", e_ident[EI_OSABI]);
 }
 
 /**
@@ -161,7 +167,7 @@ void printtype(Elf64_Half e_type, unsigned char *e_ident)
 		e_type = e_type >> 8;
 
 	if (e_type == ET_NONE)
-		printf("UNKNOWN TYPE\n");
+		printf("NONE (None)\n");
 	else if (e_type == ET_REL)
 		printf("REL (Relocatable file)\n");
 	else if (e_type == ET_EXEC)
@@ -171,7 +177,7 @@ void printtype(Elf64_Half e_type, unsigned char *e_ident)
 	else if (e_type == ET_CORE)
 		printf("CORE (Core file)\n");
 	else
-		printf("unknown: %x\n", e_type);
+		printf("<unknown: %x>\n", e_type);
 }
 
 /**
