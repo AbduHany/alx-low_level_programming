@@ -217,7 +217,7 @@ int main(int __attribute__((unused)) argc, char **argv)
 	fd_open = open(argv[1], O_RDONLY);
 	if (fd_open == -1)
 	{
-		dprintf(STDERR_FILENO, "Can't read file %s\n", argv[1]);
+		dprintf(STDERR_FILENO, "Error: Can't read file %s\n", argv[1]);
 		exit(98);
 	}
 
@@ -225,7 +225,7 @@ int main(int __attribute__((unused)) argc, char **argv)
 	if (ptr == NULL)
 	{
 		close(fd_open);
-		dprintf(STDERR_FILENO, "Error while allocating Elf64_Ehdr struct\n");
+		dprintf(STDERR_FILENO, "Error: Can't read file %s\n");
 		exit(98);
 	}
 	fd_read = read(fd_open, ptr, sizeof(Elf64_Ehdr));
@@ -233,7 +233,7 @@ int main(int __attribute__((unused)) argc, char **argv)
 	{
 		free(ptr);
 		close(fd_open);
-		dprintf(STDERR_FILENO, "Error creating Elf64_Ehdr struct\n");
+		dprintf(STDERR_FILENO, "Error: `%s`: No such file\n", argv[1]);
 		exit(98);
 	}
 	checkifelf(ptr->e_ident);
