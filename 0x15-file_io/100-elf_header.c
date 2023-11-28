@@ -152,9 +152,12 @@ void printABIVER(unsigned char *e_ident)
  * file type.
  * Return: void.
  */
-void printtype(Elf64_Half e_type)
+void printtype(Elf64_Half e_type, unsigned char *e_ident)
 {
 	printf("  Type:                              ");
+	if (e_ident[EI_DATA] == ELFDATA2MSB)
+		e_type >>= 8;
+
 	if (e_type == ET_NONE)
 		printf("UNKNOWN TYPE\n");
 	else if (e_type == ET_REL)
@@ -244,7 +247,7 @@ int main(int __attribute__((unused)) argc, char **argv)
 	printversion(ptr->e_ident);
 	printOSABI(ptr->e_ident);
 	printABIVER(ptr->e_ident);
-	printtype(ptr->e_type);
+	printtype(ptr->e_type, ptr->e_ident);
 	printentry(ptr->e_entry, ptr->e_ident);
 
 	free(ptr);
