@@ -158,11 +158,11 @@ void printtype(Elf64_Half e_type)
 	if (e_type == ET_NONE)
 		printf("UNKNOWN TYPE\n");
 	else if (e_type == ET_REL)
-		printf("REL  (Relocatable file)\n");
+		printf("REL (Relocatable file)\n");
 	else if (e_type == ET_EXEC)
 		printf("EXEC (Executable file)\n");
 	else if (e_type == ET_DYN)
-		printf("DYN  (Shared object file)\n");
+		printf("DYN (Shared object file)\n");
 	else if (e_type == ET_CORE)
 		printf("CORE (Core file)\n");
 	else
