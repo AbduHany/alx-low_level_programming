@@ -39,7 +39,7 @@ void printmagic(unsigned char *e_ident)
 {
 	int i;
 
-	printf("Magic:   ");
+	printf("  Magic:   ");
 	for (i = 0; i < EI_NIDENT; i++)
 	{
 		if (i == EI_NIDENT - 1)
@@ -58,7 +58,7 @@ void printmagic(unsigned char *e_ident)
  */
 void printclass(unsigned char *e_ident)
 {
-	printf("Class:                             ");
+	printf("  Class:                             ");
 	if (e_ident[EI_CLASS] == 0)
 		printf("INVALID CLASS\n");
 	else if (e_ident[EI_CLASS] == 1)
@@ -75,7 +75,7 @@ void printclass(unsigned char *e_ident)
  */
 void printdata(unsigned char *e_ident)
 {
-	printf("Data:                              ");
+	printf("  Data:                              ");
 	if (e_ident[EI_DATA] == 0)
 		printf("INVALID DATA ENCODING\n");
 	else if (e_ident[EI_DATA] == 1)
@@ -92,7 +92,7 @@ void printdata(unsigned char *e_ident)
  */
 void printversion(unsigned char *e_ident)
 {
-	printf("Version:                           ");
+	printf("  Version:                           ");
 	if (e_ident[EI_VERSION] == EV_CURRENT)
 	{
 		printf("%d (current)\n", e_ident[EI_VERSION]);
@@ -109,7 +109,7 @@ void printversion(unsigned char *e_ident)
  */
 void printOSABI(unsigned char *e_ident)
 {
-	printf("OS/ABI:                            ");
+	printf("  OS/ABI:                            ");
 	if (e_ident[EI_OSABI] == ELFOSABI_NONE)
 		printf("UNIX - System V\n");
 	else if (e_ident[EI_OSABI] == ELFOSABI_HPUX)
@@ -142,7 +142,7 @@ void printOSABI(unsigned char *e_ident)
  */
 void printABIVER(unsigned char *e_ident)
 {
-	printf("ABI Version:                       ");
+	printf("  ABI Version:                       ");
 	printf("%d\n", e_ident[EI_ABIVERSION]);
 }
 
@@ -154,7 +154,7 @@ void printABIVER(unsigned char *e_ident)
  */
 void printtype(Elf64_Half e_type)
 {
-	printf("Type:                              ");
+	printf("  Type:                              ");
 	if (e_type == ET_NONE)
 		printf("UNKNOWN TYPE\n");
 	else if (e_type == ET_REL)
@@ -179,7 +179,7 @@ void printtype(Elf64_Half e_type)
  */
 void printentry(Elf64_Addr e_entry, unsigned char *e_ident)
 {
-	printf("Entry point address:               ");
+	printf("  Entry point address:               ");
 
 	if (e_ident[EI_CLASS] == ELFCLASS32)
 		printf("%#x\n", (unsigned int)e_entry);
