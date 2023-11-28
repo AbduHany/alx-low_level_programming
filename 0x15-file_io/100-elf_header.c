@@ -85,7 +85,7 @@ void printdata(unsigned char *e_ident)
 	else if (e_ident[EI_DATA] == 2)
 		printf("2's complement, big endian\n");
 	else
-		printf("<unknown: %x>\n", e_ident[EI_CLASS]);
+		printf("<unknown: %x>\n", e_ident[EI_DATA]);
 }
 
 /**
@@ -190,7 +190,7 @@ void printtype(Elf64_Half e_type, unsigned char *e_ident)
  * identifiers.
  * Return: void.
  */
-void printentry(Elf64_Addr e_entry, unsigned char *e_ident)
+void printentry(unsigned long int e_entry, unsigned char *e_ident)
 {
 	printf("  Entry point address:               ");
 
