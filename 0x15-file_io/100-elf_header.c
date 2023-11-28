@@ -59,7 +59,7 @@ void printclass(unsigned char *e_ident)
 {
 	printf("  Class:                             ");
 	if (e_ident[EI_CLASS] == ELFCLASSNONE)
-		printf("none\n");
+		printf("NONE\n");
 	else if (e_ident[EI_CLASS] == ELFCLASS32)
 		printf("ELF32\n");
 	else if (e_ident[EI_CLASS] == ELFCLASS64)
@@ -193,9 +193,10 @@ void printentry(unsigned long int e_entry, unsigned char *e_ident)
 
 	if (e_ident[EI_DATA] == ELFDATA2MSB)
 	{
-		e_entry = ((e_entry << 8) & 0xFF00FF00) |
-			((e_entry >> 8) & 0xFF00FF);
-		e_entry = (e_entry << 16) | (e_entry >> 16);
+		e_entry = (e_entry >> 24) |
+              ((e_entry >> 8) & 0xff00) |
+              ((e_entry << 8) & 0xff0000) |
+              (e_entry << 24);
 	}
 	if (e_ident[EI_CLASS] == ELFCLASS32)
 		printf("0x%x\n", (unsigned int)e_entry);
