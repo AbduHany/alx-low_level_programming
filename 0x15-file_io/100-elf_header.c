@@ -225,7 +225,7 @@ int main(int __attribute__((unused)) argc, char **argv)
 	if (ptr == NULL)
 	{
 		close(fd_open);
-		dprintf(STDERR_FILENO, "Error: Can't read file %s\n");
+		dprintf(STDERR_FILENO, "Error: Can't read file %s\n", argv[1]);
 		exit(98);
 	}
 	fd_read = read(fd_open, ptr, sizeof(Elf64_Ehdr));
