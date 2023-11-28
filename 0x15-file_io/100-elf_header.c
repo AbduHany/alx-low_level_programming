@@ -14,15 +14,14 @@
  */
 void checkifelf(unsigned char *e_ident)
 {
-	int flag;
+	int flag = 0;
 
 	if (e_ident[EI_MAG0] == 127 && e_ident[EI_MAG1] == 69 &&
 	e_ident[EI_MAG2] == 76 && e_ident[EI_MAG3] == 70)
 	{
 		flag = 1;
 	}
-	else
-		flag = 0;
+
 	if (flag == 0)
 	{
 		dprintf(STDERR_FILENO, "Error: not elf file\n");
