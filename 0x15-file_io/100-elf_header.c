@@ -214,11 +214,6 @@ int main(int argc, char **argv)
 	int fd_open, fd_read;
 	Elf64_Ehdr *ptr;
 
-	if (argc != 2)
-	{
-		dprintf(STDERR_FILENO, "Usage: ./elf_header elf_filename\n");
-		exit(98);
-	}
 	fd_open = open(argv[1], O_RDONLY);
 	if (fd_open == -1)
 	{
