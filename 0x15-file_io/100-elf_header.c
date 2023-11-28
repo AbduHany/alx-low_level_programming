@@ -58,11 +58,11 @@ void printmagic(unsigned char *e_ident)
 void printclass(unsigned char *e_ident)
 {
 	printf("  Class:                             ");
-	if (e_ident[EI_CLASS] == 0)
+	if (e_ident[EI_CLASS] == ELFCLASSNONE)
 		printf("none\n");
-	else if (e_ident[EI_CLASS] == 1)
+	else if (e_ident[EI_CLASS] == ELFCLASS32)
 		printf("ELF32\n");
-	else if (e_ident[EI_CLASS] == 2)
+	else if (e_ident[EI_CLASS] == ELFCLASS64)
 		printf("ELF64\n");
 	else
 		printf("<unknown: %x>\n", e_ident[EI_CLASS]);
@@ -77,11 +77,11 @@ void printclass(unsigned char *e_ident)
 void printdata(unsigned char *e_ident)
 {
 	printf("  Data:                              ");
-	if (e_ident[EI_DATA] == 0)
+	if (e_ident[EI_DATA] == ELFDATANONE)
 		printf("INVALID DATA ENCODING\n");
-	else if (e_ident[EI_DATA] == 1)
+	else if (e_ident[EI_DATA] == ELFDATA2LSB)
 		printf("2's complement, little endian\n");
-	else if (e_ident[EI_DATA] == 2)
+	else if (e_ident[EI_DATA] == ELFDATA2MSB)
 		printf("2's complement, big endian\n");
 	else
 		printf("<unknown: %x>\n", e_ident[EI_DATA]);
@@ -210,7 +210,7 @@ void printentry(unsigned long int e_entry, unsigned char *e_ident)
  */
 void closeelf(int elffile)
 {
-	if (close(elffile) != 0)
+	if (close(elffile) == -1)
 	{
 		dprintf(STDERR_FILENO,
 			"Error: Can't close elf file %d\n", elffile);
