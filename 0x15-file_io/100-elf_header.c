@@ -78,7 +78,7 @@ void printdata(unsigned char *e_ident)
 {
 	printf("  Data:                              ");
 	if (e_ident[EI_DATA] == ELFDATANONE)
-		printf("INVALID DATA ENCODING\n");
+		printf("none\n");
 	else if (e_ident[EI_DATA] == ELFDATA2LSB)
 		printf("2's complement, little endian\n");
 	else if (e_ident[EI_DATA] == ELFDATA2MSB)
