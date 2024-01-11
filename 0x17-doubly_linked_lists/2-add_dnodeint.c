@@ -22,8 +22,8 @@ dlistint_t *add_dnodeint(dlistint_t **head, const int n)
 		*head = new_node;
 		return (new_node);
 	}
-        /** adding it to a list that already has nodes **/
-        new_node->next = *head;
+	/** adding it to a list that already has nodes **/
+	new_node->next = *head;
 	(*head)->prev = new_node;
 	*head = new_node;
 	return (new_node);
