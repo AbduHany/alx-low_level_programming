@@ -34,15 +34,16 @@ dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 
 	if ((*h == NULL && idx != 0) || h == NULL)
 		return (NULL);
-	else if (idx == 0) /** adding at idx 0 in empty list **/
+	else if (*h == NULL && idx == 0) /** adding at idx 0 in empty list **/
 		return (add_dnodeint(h, n));
 
 	for (temp = *h; temp != NULL; temp = temp->next)
 		node_count++; /** counting the number of nodes in list **/
 	if ((int)idx >= node_count) /** checking if index is out of range **/
 		return (NULL);
-
-	if ((int)idx == ((node_count) - 1))
+	else if ((int)idx == 0)
+		return (add_dnodeint(h, n));
+	else if ((int)idx == ((node_count) - 1))
 		return (add_dnodeint_end(h, n));
 
 	new_node = init_new_node(n); /** initialize new node **/
