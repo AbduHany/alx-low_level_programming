@@ -32,7 +32,9 @@ dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 	dlistint_t *new_node, *temp;
 	int node_count = 0, i;
 
-	if ((*h == NULL && idx != 0) || h == NULL)
+	if (h == NULL)
+		return (NULL);
+	else if ((*h == NULL && idx != 0))
 		return (NULL);
 	else if (*h == NULL && idx == 0) /** adding at idx 0 in empty list **/
 		return (add_dnodeint(h, n));
