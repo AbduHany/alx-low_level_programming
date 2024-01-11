@@ -41,9 +41,6 @@ dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 		node_count++; /** counting the number of nodes in list **/
 	if ((int)idx >= node_count) /** checking if index is out of range **/
 		return (NULL);
-	else if ((int)idx == ((node_count) - 1))
-		return (add_dnodeint_end(h, n));
-
 	new_node = init_new_node(n); /** initialize new node **/
 	if (new_node == NULL)
 		return (NULL);
