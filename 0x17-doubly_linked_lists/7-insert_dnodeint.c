@@ -32,11 +32,13 @@ dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 	dlistint_t *new_node, *temp, *temp2;
 	int node_count = 0, i;
 
-	if ((*h == NULL && idx != 0) || h == NULL)
+	if ((*h == NULL) || h == NULL)
 		return (NULL);
+
 	new_node = init_new_node(n); /** initialize new node **/
 	if (new_node == NULL)
 		return (NULL);
+
 	if (*h == NULL && idx == 0) /** adding at idx 0 in an empty list **/
 	{
 		*h = new_node;
