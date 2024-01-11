@@ -3,6 +3,13 @@
 #include <time.h>
 #include <string.h>
 
+/**
+ * main - keygen for the crackme5 executable.
+ * @argc: number of arguments.
+ * @argv: pointer to argument strings.
+ *
+ * Return: 0 if successful.
+ */
 int main(int argc, char **argv)
 {
 	char *username, key[7], *ref;
