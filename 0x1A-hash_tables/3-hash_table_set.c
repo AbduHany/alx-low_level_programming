@@ -1,6 +1,38 @@
 #include "hash_tables.h"
 
 /**
+ * add_to_table - adds a new entry to a hash table after checking there
+ * are no duplicate keys.
+ * @newentry: pointer to the new hash node to be added.
+ * @ht: pointer to the hash table struct.
+ *
+ * Return: 1 if success, 0 if not.
+ */
+int add_to_table(hash_node_t *newentry, hash_table_t *ht)
+{
+	hash_node_t *cursor;
+	unsigned long int newindex;
+
+	newindex = key_index((const unsigned char *)newentry->key, ht->size);
+	if ((*((ht->array) + newindex)) != NULL)
+	{
+		if (strcmp(newentry->key, (*((ht->array) + newindex))->key) == 0)
+		{
+			free(newentry->key);
+			free(newentry->value);
+			free(newentry);
+			return (0);
+		}
+		cursor = (*((ht->array) + newindex));
+		newentry->next = cursor;
+		(*((ht->array) + newindex)) = newentry;
+		return (1);
+	}
+	*((ht->array) + newindex) = newentry;
+	return (1);
+}
+
+/**
  * hash_table_set - adds an element to the hash table.
  * @ht: pointer to the hashtable struct.
  * @key: the key to be added to the hashtable.
@@ -10,9 +42,9 @@
  */
 int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 {
-	hash_node_t *newentry, *cursor;
-	unsigned long int newindex;
+	hash_node_t *newentry;
 	char *nodekey, *nodeval;
+	int status;
 
 	if (ht == NULL || key == NULL || value == NULL)
 		return (0);
@@ -39,14 +71,6 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	newentry->key = nodekey;
 	newentry->value = nodeval;
 	newentry->next = NULL;
-	newindex = key_index((const unsigned char *)key, ht->size);
-	if ((*((ht->array) + newindex)) != NULL)
-	{
-		cursor = (*((ht->array) + newindex));
-		newentry->next = cursor;
-		(*((ht->array) + newindex)) = newentry;
-	}
-	else
-		*((ht->array) + newindex) = newentry;
-	return (1);
+	status = add_to_table(newentry, ht);
+	return (status);
 }
