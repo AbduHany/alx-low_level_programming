@@ -19,10 +19,10 @@ int add_to_table(hash_node_t *newentry, hash_table_t *ht)
 		for (i = newindex; ht->array[i] != NULL; i++)
 			if (strcmp(newentry->key, (ht->array)[i]->key) == 0)
 			{
+				ht->array[i]->value = newentry->value;
 				free(newentry->key);
-				free(newentry->value);
 				free(newentry);
-				return (0);
+				return (1);
 			}
 		cursor = (ht->array)[newindex];
 		newentry->next = cursor;
