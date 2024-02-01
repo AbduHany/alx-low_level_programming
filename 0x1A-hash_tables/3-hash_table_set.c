@@ -11,18 +11,19 @@
 int add_to_table(hash_node_t *newentry, hash_table_t *ht)
 {
 	hash_node_t *cursor;
-	unsigned long int newindex;
+	unsigned long int newindex, i;
 
 	newindex = key_index((const unsigned char *)newentry->key, ht->size);
 	if ((*((ht->array) + newindex)) != NULL)
 	{
-		if (strcmp(newentry->key, (ht->array)[newindex]->key) == 0)
-		{
-			free(newentry->key);
-			free(newentry->value);
-			free(newentry);
-			return (0);
-		}
+		for (i = newindex; ht->array[i] != NULL; i++)
+			if (strcmp(newentry->key, (ht->array)[i]->key) == 0)
+			{
+				free(newentry->key);
+				free(newentry->value);
+				free(newentry);
+				return (0);
+			}
 		cursor = (ht->array)[newindex];
 		newentry->next = cursor;
 		(ht->array)[newindex] = newentry;
