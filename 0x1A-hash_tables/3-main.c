@@ -16,10 +16,12 @@ int main(void)
 	const unsigned char *key = (const unsigned char*)"betty";
 
 	ht = hash_table_create(1024);
-	hash_table_set(ht, "betty", "cool");
-	hash_table_set(ht, "betty", "hi");
-
 	index = key_index(key, ht->size);
+	hash_table_set(ht, "betty", "cool");
+	printf("%s\n", ht->array[index]->value);
+	hash_table_set(ht, "betty", "hi");
+	printf("%s\n", ht->array[index]->value);
+
 	cursor = (ht->array)[index];
 	while (cursor != NULL)
 	{
