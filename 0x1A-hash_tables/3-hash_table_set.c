@@ -43,13 +43,11 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	newentry->value = nodeval;
 	newentry->next = NULL;
 	newindex = key_index((const unsigned char *)key, ht->size);
-	if ((*((ht->array) + newindex)) == NULL)
-		*((ht->array) + newindex) = newentry;
-	else
-	{
+	if ((*((ht->array) + newindex)) != NULL)
 		cursor = (*((ht->array) + newindex));
 		newentry->next = cursor;
 		(*((ht->array) + newindex)) = newentry;
-	}
+		return (1);
+	*((ht->array) + newindex) = newentry;
 	return (1);
 }
