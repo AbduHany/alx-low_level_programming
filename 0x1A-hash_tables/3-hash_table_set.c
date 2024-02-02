@@ -21,6 +21,7 @@ int add_to_table(hash_node_t *newentry, hash_table_t *ht)
 		{
 			if (strcmp(newentry->key, cursor->key) == 0)
 			{
+				free(cursor->value);
 				cursor->value = newentry->value;
 				free(newentry->key);
 				free(newentry);
@@ -58,21 +59,19 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	newentry = malloc(sizeof(hash_node_t));
 	if (newentry == NULL)
 		return (0);
-	nodekey = malloc(sizeof(char) * (strlen(key) + 1));
+	nodekey = strdup(key);
 	if (nodekey == NULL)
 	{
 		free(newentry);
 		return (0);
 	}
-	nodeval = malloc(sizeof(char) * (strlen(value) + 1));
+	nodeval = strdup(value);
 	if (nodeval == NULL)
 	{
 		free(newentry);
 		free(nodekey);
 		return (0);
 	}
-	strcpy(nodekey, key);
-	strcpy(nodeval, value);
 	newentry->key = nodekey;
 	newentry->value = nodeval;
 	newentry->next = NULL;
