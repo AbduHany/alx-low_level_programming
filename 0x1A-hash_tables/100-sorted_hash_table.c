@@ -11,8 +11,6 @@ shash_table_t *shash_table_create(unsigned long int size)
 	shash_table_t *created_table;
 	shash_node_t **array;
 
-	if (size == 0)
-		return (NULL);
 	created_table = malloc(sizeof(shash_table_t));
 	if (created_table == NULL)
 		return (NULL);
@@ -26,6 +24,7 @@ shash_table_t *shash_table_create(unsigned long int size)
 	created_table->array = array;
 	created_table->shead = NULL;
 	created_table->stail = NULL;
+
 	return (created_table);
 }
 
@@ -45,6 +44,7 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 
 	if (ht == NULL || key == NULL || value == NULL || *key == '\0')
 		return (0);
+
 	newentry = malloc(sizeof(shash_node_t));
 	if (newentry == NULL)
 		return (0);
@@ -126,8 +126,10 @@ char *shash_table_get(const shash_table_t *ht, const char *key)
 	if (ht == NULL || key == NULL || *key == '\0')
 		return (NULL);
 	index = key_index((const unsigned char *)key, ht->size);
+
 	if (ht->array[index] == NULL)
 		return (NULL);
+
 	cursor = ht->array[index];
 	while (cursor != NULL)
 	{
@@ -148,8 +150,9 @@ void shash_table_print(const shash_table_t *ht)
 {
 	shash_node_t *cursor;
 
-	if (ht->shead == NULL)
+	if (ht == NULL)
 		return;
+
 	cursor = ht->shead;
 	printf("{");
 	while (cursor != NULL)
@@ -174,7 +177,7 @@ void shash_table_print_rev(const shash_table_t *ht)
 {
 	shash_node_t *cursor;
 
-	if (ht->stail == NULL)
+	if (ht == NULL)
 		return;
 	cursor = ht->stail;
 	printf("{");
