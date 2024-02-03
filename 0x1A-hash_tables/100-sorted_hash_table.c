@@ -29,6 +29,55 @@ shash_table_t *shash_table_create(unsigned long int size)
 }
 
 /**
+ * add_sto_table - adds a new entry to a sorted hash table after
+ * checking there are no duplicate keys.
+ * @newentry: pointer to the new hash node to be added.
+ * @ht: pointer to the hash table struct.
+ *
+ * Return: 1 if success, 0 if not.
+ */
+int add_sto_table(shash_node_t *newentry, shash_table_t *ht)
+{
+	shash_node_t *cursor;
+	unsigned long int newindex;
+
+	newindex = key_index((const unsigned char *)newentry->key, ht->size);
+	newentry->next = ht->array[newindex];
+	ht->array[newindex] = newentry;
+
+	if (ht->shead == NULL)
+	{
+		newentry->sprev = NULL;
+		newentry->snext = NULL;
+		ht->stail = newentry;
+		ht->shead = newentry;
+	}
+	else if (strcmp(ht->shead->key, newentry->key) > 0)
+	{
+		newentry->sprev = NULL;
+		newentry->snext = ht->shead;
+		ht->shead->sprev = newentry;
+		ht->shead = newentry;
+	}
+	else
+	{
+		cursor = ht->shead;
+		while (cursor->snext != NULL &&
+		       strcmp(cursor->snext->key, newentry->key) < 0)
+			cursor = cursor->snext;
+		newentry->snext = cursor->snext;
+		newentry->sprev = cursor;
+		if (cursor->snext == NULL)
+			ht->stail = newentry;
+		else
+			cursor->snext->sprev = newentry;
+		cursor->snext = newentry;
+	}
+	return (1);
+}
+
+
+/**
  * shash_table_set - adds an element to the sorted hash table.
  * @ht: pointer to the sorted hashtable struct.
  * @key: the key to be added to the hashtable.
@@ -40,7 +89,7 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 {
 	shash_node_t *newentry, *cursor;
 	char *nodekey, *nodeval;
-	unsigned long int newindex;
+	int status;
 
 	if (ht == NULL || key == NULL || value == NULL || *key == '\0')
 		return (0);
@@ -76,38 +125,8 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 		}
 		cursor = cursor->snext;
 	}
-	newindex = key_index((const unsigned char *)newentry->key, ht->size);
-	newentry->next = ht->array[newindex];
-	ht->array[newindex] = newentry;
-
-	if (ht->shead == NULL)
-	{
-		newentry->sprev = NULL;
-		newentry->snext = NULL;
-		ht->stail = newentry;
-		ht->shead = newentry;
-	}
-	else if (strcmp(ht->shead->key, nodekey) > 0)
-	{
-		newentry->sprev = NULL;
-		newentry->snext = ht->shead;
-		ht->shead->sprev = newentry;
-		ht->shead = newentry;
-	}
-	else
-	{
-		cursor = ht->shead;
-		while (cursor->snext != NULL && strcmp(cursor->snext->key, nodekey) < 0)
-			cursor = cursor->snext;
-		newentry->snext = cursor->snext;
-		newentry->sprev = cursor;
-		if (cursor->snext == NULL)
-			ht->stail = newentry;
-		else
-			cursor->snext->sprev = newentry;
-		cursor->snext = newentry;
-	}
-	return (1);
+	status = add_sto_table(newentry, ht);
+	return (status);
 }
 
 /**
