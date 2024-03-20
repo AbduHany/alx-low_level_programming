@@ -1,0 +1,7 @@
+CC = gcc
+files = main.c school.c
+output = school
+all: $(output)
+
+$(output): $(files)
+	$(CC) $^ -o $@
