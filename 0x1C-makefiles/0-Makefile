@@ -1,7 +1,4 @@
-CC = gcc
-files = main.c school.c
-output = school
-all: $(output)
+all: school
 
-$(output): $(files)
-	$(CC) $^ -o $@
+school: main.c school.c
+	gcc $^ -o $@
