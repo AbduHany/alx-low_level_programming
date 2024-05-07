@@ -35,8 +35,6 @@ int bin_search(int *array, size_t low, size_t high, int value)
 {
 	size_t mid;
 
-	if (array == NULL)
-		return (-1);
 	while (low <= high)
 	{
 		printf("Searching in array: ");
@@ -70,7 +68,7 @@ int exponential_search(int *array, size_t size, int value)
 	if (array == NULL)
 		return (-1);
 	i = 1;
-	while (array[i] < value && i < size)
+	while (array[i] <= value && i < size)
 	{
 		printf("Value checked array[%ld] = [%d]\n", i, array[i]);
 		if (array[i] == value)
