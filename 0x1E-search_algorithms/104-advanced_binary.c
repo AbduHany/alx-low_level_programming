@@ -12,12 +12,14 @@ void print_arr(int *array, size_t low, size_t high)
 {
 	size_t i;
 
+	printf("Searching in array: ");
 	for (i = low; i <= high; i++)
 	{
 		printf("%d", array[i]);
 		if (i != high)
 			printf(", ");
 	}
+	printf("\n");
 }
 
 /**
@@ -34,9 +36,22 @@ int bin_recur(int *array, size_t low, size_t high, int value)
 {
 	size_t mid;
 
+	print_arr(array, low, high);
+
+	if (low == high)
+	{
+		if (value == array[low])
+			return (low);
+		else
+			return (-1);
+	}
 	mid = (low + high) / 2;
-        if (array[mid] == value)
+	if (array[mid] == value)
+	{
+		if (array[mid - 1] == array[mid] && array[mid + 1] != array[mid])
+			return (bin_recur(array, low, mid, value));
 		return (mid);
+	}
 	else if (value > array[mid])
 		return (bin_recur(array, mid + 1, high, value));
 	return (bin_recur(array, low, mid - 1, value));
