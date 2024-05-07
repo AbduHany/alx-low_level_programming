@@ -56,7 +56,7 @@ int bin_recur(int *array, size_t low, size_t high, int value)
 	else if (value > array[mid])
 		return (bin_recur(array, mid + 1, high, value));
 	else
-		return (bin_recur(array, low, mid - 1, value));
+		return (bin_recur(array, low, mid, value));
 }
 
 
