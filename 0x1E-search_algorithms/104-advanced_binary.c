@@ -72,7 +72,7 @@ int bin_recur(int *array, size_t low, size_t high, int value)
 int advanced_binary(int *array, size_t size, int value)
 {
 
-	if (array == NULL)
+	if (array == NULL || size == 0)
 		return (-1);
 	return (bin_recur(array, 0, size - 1, value));
 }
