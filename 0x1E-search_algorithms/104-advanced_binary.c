@@ -38,7 +38,7 @@ int bin_recur(int *array, size_t low, size_t high, int value)
 
 	print_arr(array, low, high);
 
-	if (low == high) /* one element array */
+	if (low >= high)
 	{
 		if (value == array[low])
 			return (low);
