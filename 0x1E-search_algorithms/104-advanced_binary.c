@@ -38,7 +38,7 @@ int bin_recur(int *array, size_t low, size_t high, int value)
 
 	print_arr(array, low, high);
 
-	if (low == high)
+	if (low == high) /* one element array */
 	{
 		if (value == array[low])
 			return (low);
@@ -48,13 +48,15 @@ int bin_recur(int *array, size_t low, size_t high, int value)
 	mid = (low + high) / 2;
 	if (array[mid] == value)
 	{
-		if (array[mid - 1] == array[mid] && array[mid + 1] != array[mid])
+		if (array[mid - 1] == array[mid])
 			return (bin_recur(array, low, mid, value));
-		return (mid);
+		else
+			return (mid);
 	}
 	else if (value > array[mid])
 		return (bin_recur(array, mid + 1, high, value));
-	return (bin_recur(array, low, mid - 1, value));
+	else
+		return (bin_recur(array, low, mid - 1, value));
 }
 
 
