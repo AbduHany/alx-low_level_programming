@@ -63,17 +63,20 @@ int bin_search(int *array, size_t low, size_t high, int value)
  */
 int exponential_search(int *array, size_t size, int value)
 {
-	size_t i, low, high;
+	size_t i = 0, low, high;
 
 	if (array == NULL)
 		return (-1);
-	i = 1;
-	while (array[i] <= value && i < size)
+	if (array[0] != value)
 	{
-		printf("Value checked array[%ld] = [%d]\n", i, array[i]);
-		if (array[i] == value)
-			return (i);
-		i *= 2;
+		i = 1;
+		while (i < size && array[i] <= value)
+		{
+			printf("Value checked array[%ld] = [%d]\n", i, array[i]);
+			if (array[i] == value)
+				return (i);
+			i *= 2;
+		}
 	}
 	low = i / 2;
 	high = i < size - 1 ? i : size - 1;
