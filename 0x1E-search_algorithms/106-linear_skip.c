@@ -24,13 +24,13 @@ skiplist_t *linear_skip(skiplist_t *list, int value)
 		low = low->express;
 		high = high->express;
 	}
+	printf("Value checked at index [%ld] = [%d]\n", high->index, high->n);
 	if (value > high->n)
 	{
 		low = high;
 		while (high->next != NULL)
 			high = high->next;
 	}
-	printf("Value checked at index [%ld] = [%d]\n", high->index, high->n);
 	printf("Value found between indexes [%ld] and [%ld]\n",
 	       low->index, high->index);
 	cursor = low;
